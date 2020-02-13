@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    {% include "./partials/styles.twig" %}
+  </head>
+  <body>
+    <div class="container mt-1">
+      {% block body %}{% endblock %}
+    </div>
+  </body>
+  {% include "./partials/scripts.twig" %}
+</html>
