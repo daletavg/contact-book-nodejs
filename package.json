@@ -17,6 +17,7 @@
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.2",
     "sequelize": "^5.21.4",
-    "twig": "~0.10.3"
+    "twig": "~0.10.3",
+    "body-parser": "latest"
   }
 }

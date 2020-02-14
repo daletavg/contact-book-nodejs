@@ -1,8 +1,7 @@
-var indexRouter = require('./home');
-var usersRouter = require('./users');
+const indexRouter = require('./index');
+const usersRouter = require('./users');
 
 
 module.exports = function(server){
     server.use('/', indexRouter);
-    // server.use('/users', usersRouter);    
-}
+};

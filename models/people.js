@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const sequelize = require('./dbconnect')
+const Sequelize = require('sequelize');
+const sequelize = require('./dbconnect');
 
 const People = sequelize.define("people", {
     id: {
@@ -12,10 +12,19 @@ const People = sequelize.define("people", {
       type: Sequelize.STRING,
       allowNull: false
     },
-    age: {
+    surname: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    number: {
       type: Sequelize.INTEGER,
       allowNull: false
+    },
+    description:{
+        type:Sequelize.TEXT,
+        allowNull:true
     }
+
 });
 
 module.exports = People;

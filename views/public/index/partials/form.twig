@@ -11,6 +11,7 @@
             name="name"
             id="peopleName"
             placeholder="Name"
+            value="{{ people.name|'' }}"
           />
         </div>
       </div>
@@ -23,6 +24,7 @@
             name="surname"
             id="surname"
             placeholder="Surname"
+            value="{{ people.surname|'' }}"
           />
         </div>
       </div>
@@ -30,12 +32,26 @@
         <div class="form-group">
           <label for="number">Number</label>
           <input
-            type="text"
+            type="number"
             class="form-control"
             name="number"
             id="number"
             placeholder="Number"
+            value="{{ people.number|'' }}"
           />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea
+                  class="form-control"
+                  name="description"
+                  id="description"
+                  placeholder="Description"
+          >{{ people.description|'' }}</textarea>
         </div>
       </div>
     </div>
