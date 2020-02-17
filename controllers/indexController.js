@@ -1,5 +1,5 @@
 const People = require('../models/people');
-
+const {validationResult} = require('express-validator');
 
 exports.index = async function (req, res) {
     let peoples = await People.findAll();
@@ -11,9 +11,23 @@ exports.create = async function (req, res) {
 };
 
 exports.store = async function (req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        console.log(errors.errors);
+        let flashData = [];
+        errors.errors.map((err)=>{
+            flashData.push({
+                status:'danger',
+                message:err.msg+' on '+err.param+' "'+err.value+'"'
+            });
+        });
+        req.flash('msgs', flashData);
+        // req.flash('error', {status: 'danger', message: errors});
+        return res.redirect('/create');
+    }
     const data = req.body;
     await People.create(data);
-    req.flash('msg', {status: 'success', message: 'Row is created'});
+    req.flash('msgs', [{status: 'success', message: 'Row is created'}]);
     res.redirect('/');
 };
 
@@ -35,7 +49,7 @@ exports.update = async function (req, res) {
         number: data.number,
         description: data.description
     }, {where: {id}}).then(() => {
-        req.flash('msg', {status: 'success', message: 'Row is updated'});
+        req.flash('msgs', [{status: 'success', message: 'Row is updated'}]);
         res.redirect('/');
     });
 
@@ -43,7 +57,7 @@ exports.update = async function (req, res) {
 
 exports.delete = async function (req, res) {
     const id = req.params.id;
-    People.destroy({ where: { id: id } }).then(()=>{
+    People.destroy({where: {id: id}}).then(() => {
         req.flash('msg', {status: 'success', message: 'Deleted successful!'});
         res.redirect('/');
     });
