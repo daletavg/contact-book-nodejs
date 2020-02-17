@@ -19,9 +19,9 @@ exports.store = async function (req, res) {
 
 exports.edit = async function (req, res) {
     const id = req.params.id;
-     People.findOne({where: {id}}).then((people)=>{
-         res.render('public/index/edit', {title: 'Edit', people: people});
-     });
+    People.findOne({where: {id}}).then((people) => {
+        res.render('public/index/edit', {title: 'Edit', people: people});
+    });
 
 };
 
@@ -29,7 +29,12 @@ exports.update = async function (req, res) {
     const data = req.body;
     const id = req.params.id;
     console.log(data);
-    People.update({name:data.name,surname:data.surname,number:data.number,description:data.description}, {where: {id}}).then(()=>{
+    People.update({
+        name: data.name,
+        surname: data.surname,
+        number: data.number,
+        description: data.description
+    }, {where: {id}}).then(() => {
         req.flash('msg', {status: 'success', message: 'Row is updated'});
         res.redirect('/');
     });
@@ -37,6 +42,9 @@ exports.update = async function (req, res) {
 };
 
 exports.delete = async function (req, res) {
-    // People.delete(req.)
-    res.redirect('/', {status: 'success', message: 'Deleted successful!'})
+    const id = req.params.id;
+    People.destroy({ where: { id: id } }).then(()=>{
+        req.flash('msg', {status: 'success', message: 'Deleted successful!'});
+        res.redirect('/');
+    });
 };
