@@ -1,16 +1,34 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var router = require('./routes/routes');
-var twig  = require('twig');
+const  createError = require('http-errors');
+const  express = require('express');
+const  path = require('path');
+const  logger = require('morgan');
+const  router = require('./routes/routes');
+const  flashMessagesMiddleware = require('./middleware/session');
+const  twig  = require('twig');
+const  session = require('express-session'),
+    cookieParser = require("cookie-parser"),
+    flash = require("connect-flash");
+const bodyParser = require('body-parser');
+const  app = express();
+
 twig.cache(false);
+app.use(cookieParser("happy dog"));
+app.use(session({
+  secret:'happy dog',
+  saveUninitialized: true,
+  resave: true
+}));
+app.use(flash());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-const sequelize = require('./models/dbconnect')
+flashMessagesMiddleware(app);
+router(app);
 
-var app = express();
-router(app)
+
+
+
+const sequelize = require('./models/dbconnect');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

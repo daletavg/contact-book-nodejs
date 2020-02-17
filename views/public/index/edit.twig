@@ -1,4 +1,6 @@
 {% extends '../layouts/app.twig' %}
 {% block body %}
-	{% include "./partials/form.twig" %}
+	<form method="post" action="/update/{{ people.id }}">
+		{% include "./partials/form.twig" %}
+	</form>
 {% endblock %}
