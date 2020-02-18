@@ -1,5 +1,5 @@
 const People = require('../models/people');
-const {validationResult} = require('express-validator');
+
 
 exports.index = async function (req, res) {
     let peoples = await People.findAll();
@@ -11,20 +11,6 @@ exports.create = async function (req, res) {
 };
 
 exports.store = async function (req, res) {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        console.log(errors.errors);
-        let flashData = [];
-        errors.errors.map((err)=>{
-            flashData.push({
-                status:'danger',
-                message:err.msg+' on '+err.param+' "'+err.value+'"'
-            });
-        });
-        req.flash('msgs', flashData);
-        // req.flash('error', {status: 'danger', message: errors});
-        return res.redirect('/create');
-    }
     const data = req.body;
     await People.create(data);
     req.flash('msgs', [{status: 'success', message: 'Row is created'}]);
@@ -42,7 +28,6 @@ exports.edit = async function (req, res) {
 exports.update = async function (req, res) {
     const data = req.body;
     const id = req.params.id;
-    console.log(data);
     People.update({
         name: data.name,
         surname: data.surname,

@@ -1,24 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const indexController = require('../controllers/indexController');
-const { check } = require('express-validator');
-// const urlencodedParser = bodyParser.urlencoded({extended: false});
+const {validationRules, validate } = require('../validations/peoplesValidation');
 
-/* GET home page. */
+
 router.get('/',indexController.index);
 router.get('/create',indexController.create);
-router.post('/store',[
-    check('name').notEmpty().isLength({min:3}).isString(),
-    check('surname').notEmpty().isLength({min:3}).isString(),
-    check('number').notEmpty().isNumeric(),
-],indexController.store);
+router.post('/store',validationRules(),validate,indexController.store);
 
 router.get('/edit/:id',indexController.edit);
-router.post('/update/:id',[
-    check('name').notEmpty().isLength({min:3}).isString(),
-    check('surname').notEmpty().isLength({min:3}).isString(),
-    check('number').notEmpty().isNumeric(),
-],indexController.update);
+router.post('/update/:id',validationRules(),validate,indexController.update);
 
 router.post('/delete/:id',indexController.delete);
 

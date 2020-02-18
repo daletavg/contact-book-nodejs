@@ -3,7 +3,9 @@ const  express = require('express');
 const  path = require('path');
 const  logger = require('morgan');
 const  router = require('./routes/routes');
+
 const  flashMessagesMiddleware = require('./middleware/session');
+
 const  twig  = require('twig');
 const  session = require('express-session'),
     cookieParser = require("cookie-parser"),
@@ -58,10 +60,11 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-sequelize.sync().then(result=>{
-  // console.log(result);
-})
-.catch(err=> console.log(err));
+// sequelize.sync().then(result=>{
+//   // console.log(result);
+// })
+// .catch(err=> console.log(err));
 
 
 module.exports = app;
+
