@@ -43,7 +43,7 @@ exports.update = async function (req, res) {
 exports.delete = async function (req, res) {
     const id = req.params.id;
     People.destroy({where: {id: id}}).then(() => {
-        req.flash('msg', {status: 'success', message: 'Deleted successful!'});
+        req.flash('msgs', {status: 'success', message: 'Deleted successful!'});
         res.redirect('/');
     });
 };
