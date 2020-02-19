@@ -12,12 +12,14 @@ const port = process.env.PORT;
 bot.on('message', msg => {
     const user = msg.from;
     if(msg.text === '/reg'){
-        const data = createUserIfNotExist(user);
-        if(data !== null){
-            bot.sendMessage(msg.chat.id, user.first_name+' '+user.last_name+' Registrate successful');
-        }else{
-            bot.sendMessage(msg.chat.id, 'User already exist!');
-        }
+        createUserIfNotExist(user).then(data=>{
+            if(data !== null){
+                bot.sendMessage(msg.chat.id, user.first_name+' '+user.last_name+' Registrate successful');
+            }else{
+                bot.sendMessage(msg.chat.id, 'User already exist!');
+            }
+        });
+        return;
     }
     bot.sendMessage(msg.chat.id, user.first_name+' '+user.last_name);
 });
