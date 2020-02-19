@@ -1,7 +1,8 @@
 const indexRouter = require('./index');
-const usersRouter = require('./telegram');
+const telegramRouter = require('./telegram');
 
 
 module.exports = function(server){
-    server.use('/', indexRouter);
+    server.use('/', indexRouter,telegramRouter);
+    // server.use('/bot',telegramRouter);
 };
