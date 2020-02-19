@@ -1,11 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const {bot,TOKEN} = require('../config/telegram');
-
-/* GET users listing. */
-router.post(`/bot${TOKEN}`, (req, res) => {
-  // bot.processUpdate(req.body);
-  res.sendStatus(200);
-});
-
-module.exports = router;
+// const express = require('express');
+// const router = express.Router();
+// const {bot,TOKEN} = require('../config/telegram');
+//
+// /* GET users listing. */
+// router.post(`/bot${TOKEN}`, (req, res) => {
+//   // bot.processUpdate(req.body);
+//   res.sendStatus(200);
+// });
+//
+// module.exports = router;
