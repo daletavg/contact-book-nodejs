@@ -37,7 +37,7 @@ const User = sequelize.define("user", {
 });
 const createUserIfNotExist = async (data)=>{
     let createdUser = null;
-    if(User.findOne({where: {uiid:data.id}})===null) {
+    if(await User.findOne({where: {uiid:data.id}})===null) {
             createdUser = await User.create({
             uiid: data.id,
             is_bot: data.is_bot,
