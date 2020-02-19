@@ -23,6 +23,7 @@ app.use(session({
 
 app.use(flash());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 flashMessagesMiddleware(app);
 router(app);
@@ -30,7 +31,7 @@ router(app);
 
 
 
-const sequelize = require('./models/dbconnect');
+const sequelize = require('./config/database');
 
 
 // view engine setup
