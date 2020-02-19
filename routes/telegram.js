@@ -4,7 +4,7 @@ const {bot,TOKEN} = require('../config/telegram');
 
 /* GET users listing. */
 router.post(`/bot${TOKEN}`, (req, res) => {
-  bot.processUpdate(req.body);
+  // bot.processUpdate(req.body);
   res.sendStatus(200);
 });
 

@@ -1,6 +1,5 @@
 require('dotenv').config();
 const TOKEN = process.env.TELEGRAM_TOKEN || 'YOUR_TELEGRAM_BOT_TOKEN';
-console.log(TOKEN);
 const url = process.env.APP_URL;
 const port = process.env.PORT;
 
