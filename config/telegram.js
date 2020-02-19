@@ -9,7 +9,7 @@ const port = process.env.PORT;
 
 
 bot.on('message', msg => {
-    bot.sendMessage(msg.chat.id, msg.chat.toString());
+    bot.sendMessage(msg.chat.id, 'msg.chat.toString()');
 });
 
 
