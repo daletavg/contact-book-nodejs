@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const indexController = require('../controllers/indexController');
-const {validationRules, validate } = require('../validations/peoplesValidation');
+const indexController = require('../../controllers/indexController');
+const {validationRules, validate } = require('../../validations/peoplesValidation');
 
 
 router.get('/',indexController.index);

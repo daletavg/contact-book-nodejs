@@ -1,8 +1,8 @@
-const indexRouter = require('./index');
-const telegramRouter = require('./telegram');
+const adminRouter = require('./admin/routes');
+const publicRouter = require('./public/routes');
 
 
-module.exports = function(server){
-    server.use('/', indexRouter,telegramRouter);
-    // server.use('/bot',telegramRouter);
+module.exports = function (server) {
+    adminRouter(server);
+    publicRouter(server);
 };

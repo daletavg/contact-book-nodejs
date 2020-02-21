@@ -62,11 +62,11 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-sequelize.sync().then(result=>{
-  // console.log(result);
-})
-.catch(err=> console.log(err));
-
+// sequelize.sync({force:false}).then(result=>{
+//   // console.log(result);
+// })
+// .catch(err=> console.log(err));
+//
 
 module.exports = app;
 

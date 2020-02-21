@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {bot,TOKEN} = require('../config/telegram');
+const {bot,TOKEN} = require('../../config/telegram');
 
 /* GET users listing. */
 
