@@ -10,6 +10,7 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
+                        <th scope="col">chat id</th>
                         <th scope="col">uiid</th>
                         <th scope="col">First name</th>
                         <th scope="col">Last name</th>
@@ -23,7 +24,8 @@
                     <tbody>
                     {% for user in users %}
                         <tr>
-                            <th scope="row">{{ user.uiid }}</th>
+                            <td >{{user.chat_id}}</td>
+                            <th >{{ user.uiid }}</th>
                             <td>{{user.first_name}}</td>
                             <td>{{user.last_name}}</td>
                             <td>{{user.username}}</td>

@@ -12,7 +12,7 @@ const port = process.env.PORT;
 bot.on('message', msg => {
     const user = msg.from;
     if(msg.text === '/reg'){
-        createUserIfNotExist(user).then(data=>{
+        createUserIfNotExist(user,msg.chat.id).then(data=>{
             if(data !== null){
                 bot.sendMessage(msg.chat.id, user.first_name+' '+user.last_name+' Registrate successful');
             }else{

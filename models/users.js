@@ -8,6 +8,10 @@ const User = sequelize.define("user", {
         primaryKey: true,
         allowNull: false
     },
+    chat_id:{
+        type:Sequelize.BIGINT,
+        allowNull:false,
+    },
     uiid:{
         type:Sequelize.BIGINT,
         allowNull:false,
@@ -35,7 +39,7 @@ const User = sequelize.define("user", {
     }
 
 });
-const createUserIfNotExist = async (data)=>{
+const createUserIfNotExist = async (data, chatId)=>{
     let createdUser = null;
     if(await User.findOne({where: {uiid:data.id}})===null) {
             createdUser = await User.create({
@@ -44,7 +48,8 @@ const createUserIfNotExist = async (data)=>{
             first_name: data.first_name,
             last_name: data.last_name,
             username: data.username,
-            language_code: data.language_code
+            language_code: data.language_code,
+            chat_id:chatId,
         });
     }
     return  createdUser;
